@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Poppins", sans-serif;
+  --font-sans: "Open Sans", sans-serif;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #ffffff;
+  color: #0f172a;
+  overflow-x: hidden;
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-brand-gradient bg-clip-text text-transparent;
+  }
+  .container-px {
+    @apply px-5 sm:px-8 lg:px-12;
+  }
+  /* fluid display sizing */
+  .text-fluid-hero {
+    font-size: clamp(2.75rem, 9vw, 8.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+  }
+  .text-fluid-section {
+    font-size: clamp(2rem, 5.5vw, 4.5rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Custom selection + scrollbar */
+::selection {
+  background: #16a9e8;
+  color: #ffffff;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #eef2f7;
+}
+::-webkit-scrollbar-thumb {
+  background: #c2cedd;
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #16a9e8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
