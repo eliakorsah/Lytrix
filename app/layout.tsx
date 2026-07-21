@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins, Open_Sans } from "next/font/google";
+import { Poppins, Open_Sans, Inter } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 
@@ -14,6 +14,14 @@ const openSans = Open_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-sans",
+  display: "swap",
+});
+
+// UI font for the POS demo app shell — the marketing site keeps Poppins/Open Sans.
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -57,7 +65,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${poppins.variable} ${openSans.variable}`}>
+    <html
+      lang="en"
+      className={`${poppins.variable} ${openSans.variable} ${inter.variable}`}
+    >
       <body className="font-sans antialiased">
         <SmoothScroll>{children}</SmoothScroll>
       </body>

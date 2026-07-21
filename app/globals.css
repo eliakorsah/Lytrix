@@ -82,3 +82,24 @@ html.lenis body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ------------------------------------------------------------------ */
+/* POS Till — print only the receipt (used by app/demo/pos/sell)       */
+/* ------------------------------------------------------------------ */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .pos-receipt,
+  .pos-receipt * {
+    visibility: visible;
+  }
+  .pos-receipt {
+    position: fixed;
+    inset: 0 auto auto 0;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 12mm;
+  }
+}

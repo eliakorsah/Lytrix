@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 
 export default function SmoothScroll({
@@ -8,7 +9,15 @@ export default function SmoothScroll({
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+
   useEffect(() => {
+    // The POS demo is an app shell with its own scroll containers — Lenis
+    // hijacks the wheel and fights the fixed sidebar, so skip it there.
+    if (pathname?.startsWith("/demo/pos")) {
+      return;
+    }
+
     // Respect users who prefer reduced motion — skip smooth scroll entirely.
     if (
       typeof window !== "undefined" &&
@@ -58,7 +67,7 @@ export default function SmoothScroll({
       document.removeEventListener("click", onClick);
       lenis.destroy();
     };
-  }, []);
+  }, [pathname]);
 
   return <>{children}</>;
 }
